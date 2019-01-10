@@ -64,6 +64,9 @@ Airport::Airport() {
 
   any_landing_ = false;
 
+	for(int i=0; i<6; i++)
+		planes_in_sect[i] = 0;
+
 	flight_name_ = "Ib";
 	velocidad_inicial_ = 200.0;
 }
@@ -195,6 +198,14 @@ Airport::generate_flight()
 	std::cerr<<": ["<<id;
 	Flight *aux;
 	aux = new Flight(id, ipos, bear, 0.0, velocidad_inicial_);
+
+	short int sector_code = aux->assign_sector(angle);					///////////////////////////////////////////////////////////////////////////////
+
+	planes_in_sect[sector_code]++;
+
+	if( planes_in_sect[sector_code] > 4)
+		aux->set_wait();
+
 	flights.push_back(aux);
 
 	if(flights.size() == 1)
@@ -609,7 +620,7 @@ Airport::getPoints(const Ice::Current&)
 	return points;
 }
 
-};  // namespace atcsim
+}  // namespace atcsim
 
 
 //void

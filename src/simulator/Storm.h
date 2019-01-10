@@ -40,11 +40,11 @@ public:
 	void draw();
 
 
-	Position getPosition() { return pos;};
-	float getBearing() { return bearing;};
-	float getSpeed() { return speed;};
-	float getRadious() { return radious;};
-	float getHeight() { return height;};
+	Position getPosition() { return pos;}
+	float getBearing() { return bearing;}
+	float getSpeed() { return speed;}
+	float getRadious() { return radious;}
+	float getHeight() { return height;}
 
 private:
 	Position pos, last_pos;
@@ -53,6 +53,6 @@ private:
 	float speed;
 };
 
-};  // namespace atcsim 
+};  // namespace atcsim
 
 #endif  //  TORMENTA_H__

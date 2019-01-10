@@ -48,9 +48,9 @@ public:
 
     void NextFocus();
 
-	std::list<Flight*> getFlights() {return flights;};
-	Storm* getStorm() {return storm;};
-    Flight* getFocused(){return (*focus);};
+	std::list<Flight*> getFlights() {return flights;}
+	Storm* getStorm() {return storm;}
+    Flight* getFocused(){return (*focus);}
     void UpdateSimTime(float inc);
 
 	virtual ATCDisplay::ATCDFlights getFlights(const Ice::Current&);
@@ -65,6 +65,8 @@ public:
   void book_landing() {any_landing_ = true;}
   bool is_booked_landing() { return any_landing_;}
 
+//////////////////////////////////////////////////////////////
+	Position getFinalPos(){return final_pos;}
 
 private:
 
@@ -97,12 +99,16 @@ private:
 	float acum_;
 
   bool any_landing_;
-
+///////////////////////////////////////////////////////////////7
 	float velocidad_inicial_;
 	std::string flight_name_;
 
+	short int planes_in_sect[6];
+
+
+
 };
 
-};  // namespace atcsim
+}  // namespace atcsim
 
 #endif  // SIMULATOR_AIRPORT_H__

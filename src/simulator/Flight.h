@@ -46,21 +46,32 @@ public:
 	void draw();
 
 
-	std::list<Route> *getRoute() { return &route;};
-	bool routed() { return !route.empty();};
-	Position getPosition() { return pos;};
-	float getInclination() { return inclination;};
-	float getBearing() { return bearing;};
-	float getInitBearing() { return init_bearing;};
-	float getSpeed() { return speed;};
+	std::list<Route> *getRoute() { return &route;}
+	bool routed() { return !route.empty();}
+	Position getPosition() { return pos;}
+	float getInclination() { return inclination;}
+	float getBearing() { return bearing;}
+	float getInitBearing() { return init_bearing;}
+	float getSpeed() { return speed;}
 	void setSpeed(float tgt_speed) {speed = checkSpeedLimits(tgt_speed);}
-	float getPoints() {return points;};
-	std::string getId(){return id;};
-	void setFocused(bool state) { focused = state;};
-	bool getFocused() { return focused;};
+	float getPoints() {return points;}
+	std::string getId(){return id;}
+	void setFocused(bool state) { focused = state;}
+	bool getFocused() { return focused;}
 
-	bool getInStorm() {return inStorm;};
-	void setInStorm(bool in) {inStorm=in;};
+	bool getInStorm() {return inStorm;}
+	void setInStorm(bool in) {inStorm=in;}
+
+
+///////////////////////////////////////////////////////////////////////
+	int assign_sector(float angle);
+	int get_sector() { return sector_; }
+	void assign_wait_sector();
+	void rotate_pos(Position &pos, float angle);
+	bool is_it_landing() {return landing_;}
+	void set_landing() {landing_ = true;}
+	void set_wait() {landing_ = false; }
+	void assign_intermediate_points();
 
 private:
 	std::string id;
@@ -75,6 +86,12 @@ private:
 	float points;
 
 	float checkSpeedLimits(float tgt_speed);
+
+//////////////////////////////////////////////////////////
+	short int sector_;
+	bool landing_;
+
+
 };
 
 };  // namespace atcsim

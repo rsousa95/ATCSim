@@ -61,7 +61,50 @@ Flight::Flight(std::string _id, Position _pos, float _bearing, float _inclinatio
 	points = INIT_FLIGHT_POINTS;
 
 	w_speed = 0.0f;
+
+	landing_ = true; ///////////////////////////////////////////////////////////////////////
+
+
 }
+
+int Flight::assign_sector(float angle){
+	if(angle >= 0 && angle < M_PI/6 ){
+		sector_ = 1;
+		return 3;
+	}
+
+	else if(angle >= M_PI/6 && angle < 2*M_PI/6 ){
+		sector_ = 2;
+		return 4;
+	}
+
+	else if(angle >= 2*M_PI/6){
+		sector_ = 3;
+		return 5;
+	}
+
+	else if(angle < 0 && angle >= -M_PI/6){
+		sector_ = -1;
+		return 0;
+	}
+
+	else if(angle < -M_PI/6 && angle >= -2*M_PI/6 ){
+		sector_ = -2;
+		return 1;
+	}
+
+	else if(angle < -2*M_PI/6 ){
+		sector_ = -3;
+		return 2;
+	}
+
+	else{
+	 	sector_ = 1;
+		return 3;
+	}
+
+}
+
 
 void
 Flight::update(float delta_t)
